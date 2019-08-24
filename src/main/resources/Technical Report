@@ -1,0 +1,2 @@
+本项目与KTP项目同样采用SpringMVC技术，相比于KTP项目增加的技术如下：
+1、admin表采用了静态加盐加密法，student、teacher表采用了动态加盐加密法
