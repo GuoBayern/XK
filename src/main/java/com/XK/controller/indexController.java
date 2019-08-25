@@ -35,6 +35,11 @@ public class indexController {
         this.teacherService = teacherService;
     }
 
+    @RequestMapping(path = "/index")
+    public String toIndex(){
+        return "../index";
+    }
+
     @RequestMapping(path = "/login")
     public String toAdmin(@RequestParam("txtUserName") String no, @RequestParam("txtPassword") String pass, HttpServletRequest request){
         if (isNumeric(no)){
@@ -49,7 +54,7 @@ public class indexController {
                     }
                     if (stuPass.equals(encPassDynamic)){
                         request.getSession().setAttribute("sno", no);
-                        return "redirect: adminHomePage";
+                        return "redirect: studentHomePage";
                     }
                     else {
                         request.setAttribute("message","用户名或密码错误！");

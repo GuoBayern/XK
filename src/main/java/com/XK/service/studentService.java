@@ -60,4 +60,23 @@ public class studentService {
         return studentDao.getAllStudent();
     }
 
+    //更新学生信息
+    public void updateStudentInfo(String sno, String sex, String tel, String departmentno){
+        studentModel studentModel = new studentModel();
+        studentModel.setSno(sno);
+        studentModel.setSex(sex);
+        studentModel.setTel(tel);
+        studentModel.setDepartmentno(departmentno);
+        studentDao.updateStudentInfo(studentModel);
+    }
+
+    //更新学生信息密码
+    public void updateStudentInfoPass(String sno, String spass, String tel){
+        studentModel studentModel = new studentModel();
+        studentModel.setSno(sno);
+        studentModel.setSpass(spass);
+        studentModel.setTel(tel);
+        studentDao.updateStudentInfoPass(studentModel);
+    }
+
 }

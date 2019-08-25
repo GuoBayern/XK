@@ -14,11 +14,18 @@ public class departmentService {
         this.departmentDao = departmentDao;
     }
 
-    //查询学院名称
+    //查询学院编号
     public String getDepartmentNo(String departmentname){
         departmentModel departmentModel = new departmentModel();
         departmentModel.setDepartmentname(departmentname);
         return departmentDao.getDepartmentNo(departmentModel);
+    }
+
+    //查询学院名称
+    public String getDepartmentName(String departmentno){
+        departmentModel departmentModel = new departmentModel();
+        departmentModel.setDepartmentno(departmentno);
+        return departmentDao.getDepartmentName(departmentModel);
     }
 
 }

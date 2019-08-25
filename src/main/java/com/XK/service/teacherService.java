@@ -61,4 +61,25 @@ public class teacherService {
         return teacherDao.getAllTeacher();
     }
 
+    //更新教师信息
+    public void updateTeacherInfo(String cno, String sex, String tel, String departmentno, String degree){
+        teacherModel teacherModel = new teacherModel();
+        teacherModel.setCno(cno);
+        teacherModel.setSex(sex);
+        teacherModel.setTel(tel);
+        teacherModel.setDepartmentno(departmentno);
+        teacherModel.setDegree(degree);
+        teacherDao.updateTeacherInfo(teacherModel);
+    }
+
+    //更新教师信息密码
+    public void updateTeacherInfoPass(String cno, String cpass, String tel, String degree){
+        teacherModel teacherModel = new teacherModel();
+        teacherModel.setCno(cno);
+        teacherModel.setCpass(cpass);
+        teacherModel.setTel(tel);
+        teacherModel.setDegree(degree);
+        teacherDao.updateTeacherInfoPass(teacherModel);
+    }
+
 }

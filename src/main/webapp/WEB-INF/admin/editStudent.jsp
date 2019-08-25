@@ -16,12 +16,12 @@
     <!-- Custom styles for this template -->
     <link href="../statics/bootstrap/checkout.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body class="bg-light" onload="close()">
 <div class="container" id="editdiv" style="display: none">
     <div class="row">
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3"></h4>
-            <form name="uf" accept-charset="utf-8" id="uf" method="get" action="adminInsertStudentSave" class="needs-validation" novalidate>
+            <form name="uf" accept-charset="utf-8" id="uf" method="get" action="adminEditStudentSave" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <span>用 户 名：</span>
                     <label>
@@ -125,10 +125,6 @@
 </body>
 <script type="application/javascript">
     var i;
-    function vis() {
-        var msg = '<%=request.getAttribute("editsno")%>';
-        alert(msg);
-    }
     function subm(o) {
         i = o.rowIndex;
     }
@@ -148,9 +144,18 @@
         document.getElementById("noid").value = no;
         document.getElementById("nameid").value = name;
         document.getElementById("telid").value = tel;
-        document.getElementById("academyid")[parseInt(departmentno)].selected = true;
+        document.getElementById("academyid")[parseInt(departmentno) - 1].selected = true;
         document.getElementById("editdiv").style.display = "block";
         document.getElementById("tablediv").style.display = "none";
+    }
+    function close() {
+        var msg = '<%=request.getAttribute("message")%>';
+        if (msg === "更新成功"){
+            alert(msg);
+        }
+        if (msg === "更新失败"){
+            alert(msg);
+        }
     }
 </script>
 </html>

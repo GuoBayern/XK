@@ -1,10 +1,7 @@
 package com.XK.dao;
 
 import com.XK.model.teacherModel;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -34,5 +31,13 @@ public interface teacherDao {
     //查询全部教师信息
     @Select("select * from teacher")
     public List<teacherModel> getAllTeacher();
+
+    //更新教师信息
+    @Update("update teacher set sex = #{sex}, tel = #{tel}, departmentno = #{departmentno}, degree = #{degree} where cno = #{cno}")
+    public void updateTeacherInfo(teacherModel teacherModel);
+
+    //更新教师信息密码
+    @Update("update teacher set cpass = #{cpass}, tel = #{tel}, degree = #{degree} where cno = #{cno}")
+    public void updateTeacherInfoPass(teacherModel teacherModel);
 
 }

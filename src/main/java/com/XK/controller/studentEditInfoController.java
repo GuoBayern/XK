@@ -1,8 +1,8 @@
 package com.XK.controller;
 
 import com.XK.model.studentModel;
-import com.XK.service.departmentService;
 import com.XK.service.studentService;
+import com.XK.utils.PasswordSaltDynamic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,52 +12,40 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-public class adminEditStudentController {
+public class studentEditInfoController {
 
-    private studentService studentService;
+    private com.XK.service.studentService studentService;
     @Autowired
     public void setStudentService(studentService studentService){
         this.studentService = studentService;
     }
 
-    private departmentService departmentService;
-    @Autowired
-    public void setDepartmentService(departmentService departmentService){
-        this.departmentService = departmentService;
-    }
-
-    @RequestMapping(path = "/adminEditStudent")
-    public String toAdminEditStudent(Model model, HttpServletRequest request){
-        List<studentModel> studentModels = studentService.getAllStudent();
+    @RequestMapping(path = "/studentEditInfo")
+    public String toStudentEditInfo(HttpServletRequest request, Model model){
+        String sno = request.getSession().getAttribute("sno").toString();
+        List<studentModel> studentModels = studentService.getStudentInfo(sno);
         model.addAttribute("student", studentModels);
         if (request.getSession().getAttribute("message") != null){
             String message = request.getSession().getAttribute("message").toString();
             request.setAttribute("message", message);
             request.getSession().setAttribute("message","");
         }
-        return "admin/editStudent";
+        return "student/editInfo";
     }
 
-    @RequestMapping(path = "/adminEditStudentSave")
-    public String editStudent(HttpServletRequest request){
+    @RequestMapping(path = "/studentEditInfoSave")
+    public String editStudentInfo(HttpServletRequest request, Model model){
         String sno = request.getParameter("no");
-        String sex = request.getParameter("sex");
+        String rawPass = request.getParameter("pass");
         String tel = request.getParameter("tel");
-        String departmentname = request.getParameter("academy");
-        String departmentno = departmentService.getDepartmentNo(departmentname);
-        if (sex.equals("male")){
-            sex = "男";
-        }
-        else {
-            sex = "女";
-        }
+        String encPass = PasswordSaltDynamic.enHash(sno, rawPass);
         try {
-            studentService.updateStudentInfo(sno, sex, tel, departmentno);
+            studentService.updateStudentInfoPass(sno, encPass, tel);
             request.getSession().setAttribute("message", "更新成功");
         }catch (Exception e){
             request.getSession().setAttribute("message", "更新失败");
         }
-        return "redirect: adminEditStudent";
+        return "redirect: studentEditInfo";
     }
 
 }

@@ -14,11 +14,101 @@
     <!-- Bootstrap core CSS -->
     <link href="../statics/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../statics/bootstrap/dashboard.css" rel="stylesheet">
+    <link href="../statics/bootstrap/checkout.css" rel="stylesheet">
 </head>
-<body class="bg-light">
-<div class="table-responsive">
-    <table class="table table-striped">
+<body class="bg-light" onload="close()">
+<div class="container" id="editdiv" style="display: none">
+    <div class="row">
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3"></h4>
+            <form name="uf" accept-charset="utf-8" id="uf" method="get" action="adminEditTeacherSave" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <span>用 户 名：</span>
+                    <label>
+                        <input id="noid" type="text" maxlength="20" readonly style="margin-top: 10px" name="no" value="">
+                    </label>
+                </div>
+                <br/>
+                <div class="mb-3">
+                    <span>姓&nbsp;&nbsp;名：</span>
+                    <label>
+                        <input id="nameid" type="text" maxlength="10" readonly style="margin-top: 10px" name="name" value="">
+                    </label>
+                </div>
+                <br/>
+                <div class="mb-3">
+                    <span>手 机 号：</span>
+                    <label>
+                        <input id="telid" type="text" maxlength="11" style="margin-top: 10px" name="tel" value="">
+                    </label>
+                </div>
+                <br/>
+                <div class="mb-3">
+                    <span>性&nbsp;&nbsp;别：</span>
+                    <label>
+                        <input type="radio" name="sex" value="male" style="width: 20px;height: 20px;position: relative; top:4px">
+                    </label>
+                    男
+                    <label>
+                        <input type="radio" name="sex" value="female" style="width: 20px;height: 20px;position: relative; top:4px">
+                    </label>
+                    女
+                </div>
+                <br/>
+                <div class="mb-3">
+                    <span>学&nbsp;&nbsp;院：</span>
+                    <label>
+                        <select name="academy" id="academyid">
+                            <option value="理学院">理学院</option>
+                            <option value="生命科学学院">生命科学学院</option>
+                            <option value="文学院">文学院</option>
+                            <option value="法学院">法学院</option>
+                            <option value="外国语学院">外国语学院</option>
+                            <option value="社会学院">社会学院</option>
+                            <option value="马克思主义学院">马克思主义学院</option>
+                            <option value="计算机工程与科学学院">计算机工程与科学学院</option>
+                            <option value="机电工程与自动化学院">机电工程与自动化学院</option>
+                            <option value="通信与信息工程学院">通信与信息工程学院</option>
+                            <option value="环境与化学工程学院">环境与化学工程学院</option>
+                            <option value="材料科学与工程学院">材料科学与工程学院</option>
+                            <option value="中欧工程技术学院">中欧工程技术学院</option>
+                            <option value="土木工程系">土木工程系</option>
+                            <option value="材料基因组工程研究院">材料基因组工程研究院</option>
+                            <option value="经济学院">经济学院</option>
+                            <option value="管理学院">管理学院</option>
+                            <option value="图书情报档案系">图书情报档案系</option>
+                            <option value="悉尼工商学院">悉尼工商学院</option>
+                            <option value="音乐学院">音乐学院</option>
+                            <option value="体育学院">体育学院</option>
+                            <option value="数码艺术学院">数码艺术学院</option>
+                            <option value="钱伟长学院">钱伟长学院</option>
+                        </select>
+                    </label>
+                </div>
+                <br/>
+                <div class="mb-3">
+                    <span>学&nbsp;&nbsp;历：</span>
+                    <label>
+                        <input type="radio" name="degree" value="doctor" style="width: 20px;height: 20px;position: relative; top:4px">
+                    </label>
+                    博士
+                    <label>
+                        <input type="radio" name="degree" value="master" style="width: 20px;height: 20px;position: relative; top:4px">
+                    </label>
+                    硕士
+                    <label>
+                        <input type="radio" name="degree" value="bachelor" style="width: 20px;height: 20px;position: relative; top:4px">
+                    </label>
+                    学士
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">更新</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="table-responsive" id="tablediv">
+    <table class="table table-striped" id="tableid">
         <thead>
         <tr>
             <th>工号</th>
@@ -32,7 +122,7 @@
         </thead>
         <tbody>
         <c:forEach items="${teacher}" var="teacher">
-            <tr>
+            <tr onmouseover="subm(this)">
                 <td>${teacher.cno}</td>
                 <td>${teacher.cname}</td>
                 <td>${teacher.sex}</td>
@@ -41,7 +131,8 @@
                 <td>${teacher.degree}</td>
                 <td>
                     <label>
-                        <input class="glyphicon glyphicon-edit" aria-hidden="true" style="cursor: pointer">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" style="cursor: pointer" onclick="change()">
+                        </span>
                     </label>
                 </td>
             </tr>
@@ -50,4 +141,49 @@
     </table>
 </div>
 </body>
+<script type="application/javascript">
+    function close() {
+        var msg = '<%=request.getAttribute("message")%>';
+        if (msg === "更新成功"){
+            alert(msg);
+        }
+        if (msg === "更新失败"){
+            alert(msg);
+        }
+    }
+    function subm(o) {
+        i = o.rowIndex;
+    }
+    function change(){
+        var no = document.getElementById("tableid").rows[i].cells[0].innerHTML;
+        var name = document.getElementById("tableid").rows[i].cells[1].innerHTML;
+        var sex = document.getElementById("tableid").rows[i].cells[2].innerHTML;
+        var tel = document.getElementById("tableid").rows[i].cells[3].innerHTML;
+        var departmentno = document.getElementById("tableid").rows[i].cells[4].innerHTML;
+        var degree = document.getElementById("tableid").rows[i].cells[5].innerHTML;
+        var radio1 = document.getElementsByName("sex");
+        if (sex === '男'){
+            radio1[0].checked = true;
+        }
+        else {
+            radio1[1].checked = true;
+        }
+        var radio2 = document.getElementsByName("degree");
+        if (degree === '博士'){
+            radio2[0].checked = true;
+        }
+        else if (degree === '硕士'){
+            radio2[1].checked = true;
+        }
+        else {
+            radio2[2].checked = true;
+        }
+        document.getElementById("noid").value = no;
+        document.getElementById("nameid").value = name;
+        document.getElementById("telid").value = tel;
+        document.getElementById("academyid")[parseInt(departmentno) - 1].selected = true;
+        document.getElementById("editdiv").style.display = "block";
+        document.getElementById("tablediv").style.display = "none";
+    }
+</script>
 </html>
