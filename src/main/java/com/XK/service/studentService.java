@@ -21,4 +21,21 @@ public class studentService {
         return studentDao.getStudentPass(studentModel);
     }
 
+    //加入学生信息
+    public void insertStudent(String sno, String spass, String sname, String sex, String tel, String departmentno){
+        studentModel studentModel = new studentModel();
+        studentModel.setSno(sno);
+        studentModel.setSpass(spass);
+        studentModel.setSname(sname);
+        studentModel.setSex(sex);
+        studentModel.setTel(tel);
+        studentModel.setDepartmentno(departmentno);
+        studentDao.insertStudent(studentModel);
+    }
+
+    //获取最大学生编号
+    public String getMaxStudentSno(){
+        return studentDao.getMaxStudentSno();
+    }
+
 }

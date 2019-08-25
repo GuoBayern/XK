@@ -4,12 +4,15 @@ import com.XK.service.adminService;
 import com.XK.service.studentService;
 import com.XK.service.teacherService;
 import com.XK.utils.PasswordSalt;
+import com.XK.utils.PasswordSaltDynamic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class indexController {
@@ -34,35 +37,82 @@ public class indexController {
 
     @RequestMapping(path = "/login")
     public String toAdmin(@RequestParam("txtUserName") String no, @RequestParam("txtPassword") String pass, HttpServletRequest request){
-        String encPass = PasswordSalt.passSalt(pass);
-        String stuPass = studentService.getStudentPass(no);
-        String teaPass = teacherService.getTeacherPass(no);
-        String adPass = adminService.getAdminPass(no);
-        try {
-            if (adPass.equals("") && stuPass.equals("") && teaPass.equals("")){
+        if (isNumeric(no)){
+            String encPassDynamic = PasswordSaltDynamic.enHash(no, pass);
+            String nosub = no.substring(0,5);
+            if (nosub.equals("19090")){
+                try {
+                    String stuPass = studentService.getStudentPass(no);
+                    if (stuPass.equals("")){
+                        request.setAttribute("message","用户名不存在！");
+                        return "../index";
+                    }
+                    if (stuPass.equals(encPassDynamic)){
+                        request.getSession().setAttribute("sno", no);
+                        return "redirect: adminHomePage";
+                    }
+                    else {
+                        request.setAttribute("message","用户名或密码错误！");
+                        return "../index";
+                    }
+                }catch (Exception e){
+                    request.setAttribute("message","用户名不存在！");
+                    return "../index";
+                }
+            }
+            else if (nosub.equals("10280")){
+                try {
+                    String teaPass = teacherService.getTeacherPass(no);
+                    if (teaPass.equals("")){
+                        request.setAttribute("message","用户名不存在！");
+                        return "../index";
+                    }
+                    if (teaPass.equals(encPassDynamic)){
+                        request.getSession().setAttribute("cno", no);
+                        return "redirect: adminHomePage";
+                    }
+                    else {
+                        request.setAttribute("message","用户名或密码错误！");
+                        return "../index";
+                    }
+                }catch (Exception e){
+                    request.setAttribute("message","用户名不存在！");
+                    return "../index";
+                }
+            }
+            else {
                 request.setAttribute("message","用户名不存在！");
                 return "../index";
             }
-            if (adPass.equals(encPass)){
-                request.getSession().setAttribute("adminno", no);
-                return "admin/admin";
-            }
-            else if (stuPass.equals(encPass)){
-                request.getSession().setAttribute("sno", no);
-                return "admin/admin";
-            }
-            else if (teaPass.equals(encPass)){
-                request.getSession().setAttribute("cno", no);
-                return "admin/admin";
-            }
-            else {
-                request.setAttribute("message","用户名或密码错误！");
+        }
+        else {
+            String encPass = PasswordSalt.passSalt(pass);
+            try {
+                String adPass = adminService.getAdminPass(no);
+                if (adPass.equals("")){
+                    request.setAttribute("message","用户名不存在！");
+                    return "../index";
+                }
+                if (adPass.equals(encPass)){
+                    request.getSession().setAttribute("ano", no);
+                    return "redirect: adminHomePage";
+                }
+                else {
+                    request.setAttribute("message","用户名或密码错误！");
+                    return "../index";
+                }
+            }catch (Exception e){
+                request.setAttribute("message","用户名不存在！");
                 return "../index";
             }
-        }catch (Exception e){
-            request.setAttribute("message","用户名不存在！");
-            return "../index";
         }
+    }
+
+    //判断传入的用户名是否为纯数字
+    private static boolean isNumeric(String string){
+        Pattern pattern = Pattern.compile("[0-9]*");
+        Matcher matcher = pattern.matcher(string);
+        return matcher.matches();
     }
 
 }

@@ -21,4 +21,22 @@ public class teacherService {
         return teacherDao.getTeacherPass(teacherModel);
     }
 
+    //加入教师信息
+    public void insertTeacher(String cno, String cpass, String cname, String sex, String tel, String departmentno, String degree){
+        teacherModel teacherModel = new teacherModel();
+        teacherModel.setCno(cno);
+        teacherModel.setCpass(cpass);
+        teacherModel.setCname(cname);
+        teacherModel.setSex(sex);
+        teacherModel.setTel(tel);
+        teacherModel.setDepartmentno(departmentno);
+        teacherModel.setDegree(degree);
+        teacherDao.insertTeacher(teacherModel);
+    }
+
+    //获取最大教师编号
+    public String getMaxTeacherCno(){
+        return teacherDao.getMaxTeacherCno();
+    }
+
 }

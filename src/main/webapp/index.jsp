@@ -64,7 +64,7 @@
         <div class="bottom">
             <div class="copyright">
                 <p>Copyright © 2013-2019 Shanghai University</p>
-                <p>技术支持 上海大学晓凡科技有限公司</p>
+                <p>技术支持 上大晓凡科技有限公司</p>
             </div>
         </div>
 
