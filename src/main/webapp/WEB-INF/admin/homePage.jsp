@@ -82,6 +82,7 @@
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
         document.getElementById("frame7").classList.remove("active");
+        document.getElementById("iFrameId").src = "adminDeleteStudent";
     }
     function changeiFrame3() {
         document.getElementById("frame3").classList.add("active");
@@ -91,6 +92,7 @@
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
         document.getElementById("frame7").classList.remove("active");
+        document.getElementById("iFrameId").src = "adminEditStudent";
     }
     function changeiFrame4() {
         document.getElementById("frame4").classList.add("active");
@@ -110,6 +112,7 @@
         document.getElementById("frame1").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
         document.getElementById("frame7").classList.remove("active");
+        document.getElementById("iFrameId").src = "adminDeleteTeacher";
     }
     function changeiFrame6() {
         document.getElementById("frame6").classList.add("active");
@@ -119,6 +122,7 @@
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame1").classList.remove("active");
         document.getElementById("frame7").classList.remove("active");
+        document.getElementById("iFrameId").src = "adminEditTeacher";
     }
     function changeiFrame7() {
         document.getElementById("frame7").classList.add("active");

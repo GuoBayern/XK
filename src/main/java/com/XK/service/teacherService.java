@@ -5,6 +5,8 @@ import com.XK.model.teacherModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class teacherService {
 
@@ -37,6 +39,26 @@ public class teacherService {
     //获取最大教师编号
     public String getMaxTeacherCno(){
         return teacherDao.getMaxTeacherCno();
+    }
+
+    //删除教师信息
+    public void deleteTeacher(String cno, String cname){
+        teacherModel teacherModel = new teacherModel();
+        teacherModel.setCno(cno);
+        teacherModel.setCname(cname);
+        teacherDao.deleteTeacher(teacherModel);
+    }
+
+    //查询教师信息
+    public List<teacherModel> getTeacherInfo(String cno){
+        teacherModel teacherModel = new teacherModel();
+        teacherModel.setCno(cno);
+        return teacherDao.getTeacherInfo(teacherModel);
+    }
+
+    //查询全部学生信息
+    public List<teacherModel> getAllTeacher(){
+        return teacherDao.getAllTeacher();
     }
 
 }

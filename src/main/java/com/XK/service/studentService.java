@@ -5,6 +5,8 @@ import com.XK.model.studentModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class studentService {
 
@@ -36,6 +38,26 @@ public class studentService {
     //获取最大学生编号
     public String getMaxStudentSno(){
         return studentDao.getMaxStudentSno();
+    }
+
+    //删除学生信息
+    public void deleteStudent(String sno, String sname){
+        studentModel studentModel = new studentModel();
+        studentModel.setSno(sno);
+        studentModel.setSname(sname);
+        studentDao.deleteStudent(studentModel);
+    }
+
+    //查询学生信息
+    public List<studentModel> getStudentInfo(String sno){
+        studentModel studentModel = new studentModel();
+        studentModel.setSno(sno);
+        return studentDao.getStudentInfo(studentModel);
+    }
+
+    //查询全部学生信息
+    public List<studentModel> getAllStudent(){
+        return studentDao.getAllStudent();
     }
 
 }
