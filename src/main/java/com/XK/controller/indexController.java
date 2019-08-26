@@ -61,7 +61,7 @@ public class indexController {
                         return "../index";
                     }
                 }catch (Exception e){
-                    request.setAttribute("message","用户名不存在！");
+                    request.setAttribute("message","登录失败！");
                     return "../index";
                 }
             }
@@ -74,14 +74,14 @@ public class indexController {
                     }
                     if (teaPass.equals(encPassDynamic)){
                         request.getSession().setAttribute("cno", no);
-                        return "redirect: adminHomePage";
+                        return "redirect: teacherHomePage";
                     }
                     else {
                         request.setAttribute("message","用户名或密码错误！");
                         return "../index";
                     }
                 }catch (Exception e){
-                    request.setAttribute("message","用户名不存在！");
+                    request.setAttribute("message","登录失败！");
                     return "../index";
                 }
             }
@@ -107,7 +107,7 @@ public class indexController {
                     return "../index";
                 }
             }catch (Exception e){
-                request.setAttribute("message","用户名不存在！");
+                request.setAttribute("message","登录失败！");
                 return "../index";
             }
         }

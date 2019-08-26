@@ -37,7 +37,7 @@ public interface teacherDao {
     public void updateTeacherInfo(teacherModel teacherModel);
 
     //更新教师信息密码
-    @Update("update teacher set cpass = #{cpass}, tel = #{tel}, degree = #{degree} where cno = #{cno}")
+    @Update("update teacher set cpass = #{cpass}, tel = #{tel} where cno = #{cno}")
     public void updateTeacherInfoPass(teacherModel teacherModel);
 
 }

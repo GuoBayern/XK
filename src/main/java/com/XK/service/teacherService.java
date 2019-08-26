@@ -73,12 +73,11 @@ public class teacherService {
     }
 
     //更新教师信息密码
-    public void updateTeacherInfoPass(String cno, String cpass, String tel, String degree){
+    public void updateTeacherInfoPass(String cno, String cpass, String tel){
         teacherModel teacherModel = new teacherModel();
         teacherModel.setCno(cno);
         teacherModel.setCpass(cpass);
         teacherModel.setTel(tel);
-        teacherModel.setDegree(degree);
         teacherDao.updateTeacherInfoPass(teacherModel);
     }
 

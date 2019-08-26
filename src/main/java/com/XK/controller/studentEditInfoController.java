@@ -34,7 +34,7 @@ public class studentEditInfoController {
     }
 
     @RequestMapping(path = "/studentEditInfoSave")
-    public String editStudentInfo(HttpServletRequest request, Model model){
+    public String editStudentInfo(HttpServletRequest request){
         String sno = request.getParameter("no");
         String rawPass = request.getParameter("pass");
         String tel = request.getParameter("tel");

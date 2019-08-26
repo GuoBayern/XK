@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: zxguo
   Date: 2019/8/26
-  Time: 1:58 上午
+  Time: 11:06 下午
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
@@ -20,18 +20,18 @@
     <div class="row">
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3"></h4>
-            <form name="uf" accept-charset="utf-8" id="uf" method="get" action="studentEditInfoSave" class="needs-validation" novalidate>
+            <form name="uf" accept-charset="utf-8" id="uf" method="get" action="teacherEditInfoSave" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <span>用 户 名：</span>
                     <label>
-                        <input id="noid" type="text" maxlength="20" readonly style="margin-top: 10px" name="no" value="${student.get(0).sno}">
+                        <input id="noid" type="text" maxlength="20" readonly style="margin-top: 10px" name="no" value="${teacher.get(0).cno}">
                     </label>
                 </div>
                 <br/>
                 <div class="mb-3">
                     <span>姓&nbsp;&nbsp;名：</span>
                     <label>
-                        <input id="nameid" type="text" maxlength="10" readonly style="margin-top: 10px" name="name" value="${student.get(0).sname}">
+                        <input id="nameid" type="text" maxlength="10" readonly style="margin-top: 10px" name="name" value="${teacher.get(0).cname}">
                     </label>
                 </div>
                 <br/>
@@ -53,7 +53,7 @@
                 <div class="mb-3">
                     <span>手 机 号：</span>
                     <label>
-                        <input id="telid" type="text" maxlength="11" style="margin-top: 10px" name="tel" value="${student.get(0).tel}">
+                        <input id="telid" type="text" maxlength="11" style="margin-top: 10px" name="tel" value="${teacher.get(0).tel}">
                     </label>
                 </div>
                 <br/>

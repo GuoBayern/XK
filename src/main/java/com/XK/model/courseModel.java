@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class courseModel implements Serializable {
 
     private String courseno;
+    private String cno;
     private String coursename;
     private String credit;
     private String departmentno;
@@ -18,6 +19,14 @@ public class courseModel implements Serializable {
 
     public void setCourseno(String courseno) {
         this.courseno = courseno;
+    }
+
+    public String getCno() {
+        return cno;
+    }
+
+    public void setCno(String cno) {
+        this.cno = cno;
     }
 
     public String getCoursename() {

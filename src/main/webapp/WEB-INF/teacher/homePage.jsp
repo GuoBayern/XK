@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: zxguo
   Date: 2019/8/26
-  Time: 1:44 上午
+  Time: 10:32 下午
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
@@ -31,7 +31,7 @@
         <div>
             <img src="../statics/images/logo.png" style="width: 8%; height: 8%" alt="上海大学Logo">
             <span style="color: gold; padding-left: 3%; font-size: large">上海大学选课系统</span>
-            <span style="color: gold; padding-left: 10%">姓名：${studentInfo.get(0).sname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院系：${departmentname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份：学生</span>
+            <span style="color: gold; padding-left: 10%">姓名：${teacherInfo.get(0).cname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院系：${departmentname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份：教师</span>
             <a href="index" style="padding-left: 25%">退出</a>
         </div>
     </div>
@@ -40,12 +40,11 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li id="frame1"><a onclick="changeiFrame1()" style="cursor: pointer">选课</a></li>
-                <li id="frame2"><a onclick="changeiFrame2()" style="cursor: pointer">退课</a></li>
+                <li id="frame1"><a onclick="changeiFrame1()" style="cursor: pointer">开课</a></li>
+                <li id="frame2"><a onclick="changeiFrame2()" style="cursor: pointer">关课</a></li>
                 <li id="frame3"><a onclick="changeiFrame3()" style="cursor: pointer">查看课表</a></li>
-                <li id="frame4"><a onclick="changeiFrame4()" style="cursor: pointer">查看成绩</a></li>
-                <li id="frame5"><a onclick="changeiFrame5()" style="cursor: pointer">查看学分</a></li>
-                <li id="frame6"><a onclick="changeiFrame6()" style="cursor: pointer">修改信息</a></li>
+                <li id="frame4"><a onclick="changeiFrame4()" style="cursor: pointer">录入成绩</a></li>
+                <li id="frame5"><a onclick="changeiFrame5()" style="cursor: pointer">修改信息</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -61,8 +60,7 @@
         document.getElementById("frame3").classList.remove("active");
         document.getElementById("frame4").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
-        document.getElementById("frame6").classList.remove("active");
-        document.getElementById("iFrameId").src = "";
+        document.getElementById("iFrameId").src = "teacherOpenCourse";
     }
     function changeiFrame2() {
         document.getElementById("frame2").classList.add("active");
@@ -70,7 +68,6 @@
         document.getElementById("frame3").classList.remove("active");
         document.getElementById("frame4").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
-        document.getElementById("frame6").classList.remove("active");
         document.getElementById("iFrameId").src = "";
     }
     function changeiFrame3() {
@@ -79,7 +76,6 @@
         document.getElementById("frame1").classList.remove("active");
         document.getElementById("frame4").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
-        document.getElementById("frame6").classList.remove("active");
         document.getElementById("iFrameId").src = "";
     }
     function changeiFrame4() {
@@ -88,7 +84,6 @@
         document.getElementById("frame3").classList.remove("active");
         document.getElementById("frame1").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
-        document.getElementById("frame6").classList.remove("active");
         document.getElementById("iFrameId").src = "";
     }
     function changeiFrame5() {
@@ -97,17 +92,7 @@
         document.getElementById("frame3").classList.remove("active");
         document.getElementById("frame4").classList.remove("active");
         document.getElementById("frame1").classList.remove("active");
-        document.getElementById("frame6").classList.remove("active");
-        document.getElementById("iFrameId").src = "";
-    }
-    function changeiFrame6() {
-        document.getElementById("frame6").classList.add("active");
-        document.getElementById("frame2").classList.remove("active");
-        document.getElementById("frame3").classList.remove("active");
-        document.getElementById("frame4").classList.remove("active");
-        document.getElementById("frame5").classList.remove("active");
-        document.getElementById("frame1").classList.remove("active");
-        document.getElementById("iFrameId").src = "studentEditInfo";
+        document.getElementById("iFrameId").src = "teacherEditInfo";
     }
 </script>
 </html>
