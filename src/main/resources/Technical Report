@@ -2,3 +2,5 @@
 1、admin表采用了静态加盐加密法，student、teacher表采用了动态加盐加密法
 2、采用了iframe的重用方法，减少了代码的重复
 3、在重用中加强了JS前端技术的使用，减少了后台的运算量
+4、强化了request传递session数据时，使用forward转发才能获取，redirect重定向为url传参的概念
+5、采用了AJAX技术在前后台实时传输数据

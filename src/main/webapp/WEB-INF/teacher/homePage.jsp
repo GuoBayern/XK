@@ -68,7 +68,7 @@
         document.getElementById("frame3").classList.remove("active");
         document.getElementById("frame4").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
-        document.getElementById("iFrameId").src = "";
+        document.getElementById("iFrameId").src = "teacherCloseCourse";
     }
     function changeiFrame3() {
         document.getElementById("frame3").classList.add("active");

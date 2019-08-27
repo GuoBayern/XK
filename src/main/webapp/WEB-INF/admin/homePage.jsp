@@ -55,6 +55,7 @@
             <ul class="nav nav-sidebar">
                 <li id="course">课程</li>
                 <li id="frame7"><a onclick="changeiFrame7()" style="cursor: pointer">管理上课时间</a></li>
+                <li id="frame8"><a onclick="changeiFrame8()" style="cursor: pointer">管理教室</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -72,6 +73,7 @@
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
         document.getElementById("frame7").classList.remove("active");
+        document.getElementById("frame8").classList.remove("active");
         document.getElementById("iFrameId").src = "adminInsertStudent";
     }
     function changeiFrame2() {
@@ -82,6 +84,7 @@
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
         document.getElementById("frame7").classList.remove("active");
+        document.getElementById("frame8").classList.remove("active");
         document.getElementById("iFrameId").src = "adminDeleteStudent";
     }
     function changeiFrame3() {
@@ -92,6 +95,7 @@
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
         document.getElementById("frame7").classList.remove("active");
+        document.getElementById("frame8").classList.remove("active");
         document.getElementById("iFrameId").src = "adminEditStudent";
     }
     function changeiFrame4() {
@@ -102,6 +106,7 @@
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
         document.getElementById("frame7").classList.remove("active");
+        document.getElementById("frame8").classList.remove("active");
         document.getElementById("iFrameId").src = "adminInsertTeacher";
     }
     function changeiFrame5() {
@@ -112,6 +117,7 @@
         document.getElementById("frame1").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
         document.getElementById("frame7").classList.remove("active");
+        document.getElementById("frame8").classList.remove("active");
         document.getElementById("iFrameId").src = "adminDeleteTeacher";
     }
     function changeiFrame6() {
@@ -122,6 +128,7 @@
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame1").classList.remove("active");
         document.getElementById("frame7").classList.remove("active");
+        document.getElementById("frame8").classList.remove("active");
         document.getElementById("iFrameId").src = "adminEditTeacher";
     }
     function changeiFrame7() {
@@ -131,7 +138,20 @@
         document.getElementById("frame4").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
+        document.getElementById("frame8").classList.remove("active");
         document.getElementById("frame1").classList.remove("active");
+        document.getElementById("iFrameId").src = "adminArrangeCourse";
+    }
+    function changeiFrame8() {
+        document.getElementById("frame8").classList.add("active");
+        document.getElementById("frame1").classList.remove("active");
+        document.getElementById("frame2").classList.remove("active");
+        document.getElementById("frame3").classList.remove("active");
+        document.getElementById("frame4").classList.remove("active");
+        document.getElementById("frame5").classList.remove("active");
+        document.getElementById("frame6").classList.remove("active");
+        document.getElementById("frame7").classList.remove("active");
+        document.getElementById("iFrameId").src = "adminAddClassroom";
     }
 </script>
 </html>
