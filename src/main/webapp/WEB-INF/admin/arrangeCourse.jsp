@@ -20,48 +20,49 @@
 <body class="bg-light" onload="close()">
 <div class="container">
     <div class="row">
-        <div class="col-md-8 order-md-1">
-            <h4 class="mb-3"></h4>
-            <form name="uf" accept-charset="utf-8" id="uf" method="get" action="adminArrangeCourseFirst" class="needs-validation" novalidate>
-                <div class="mb-3">
-                    <span>课 程 号：</span>
+        <form name="uf" accept-charset="utf-8" id="uf" method="get" action="adminArrangeCourseFirst" class="needs-validation" novalidate>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3"></h4>
+                    <div class="mb-3">
+                        <span>课 程 号：</span>
+                        <label>
+                            <input type="text" maxlength="20" style="margin-top: 10px" name="courseno" id="courseno">
+                        </label>
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="cursor: pointer" id="next"></span>
+                    </div>
+                    <br/>
+                <div class="mb-3" id="optionid" style="display: none">
                     <label>
-                        <input type="text" maxlength="20" style="margin-top: 10px" name="courseno" id="courseno">
+                        <select id="weekday" name="weekday">
+                            <option value="===请选择===">===请选择===</option>
+                            <option value="Mon" id="weekday1">星期一</option>
+                            <option value="Tue" id="weekday2">星期二</option>
+                            <option value="Wed" id="weekday3">星期三</option>
+                            <option value="Thu" id="weekday4">星期四</option>
+                            <option value="Fri" id="weekday5">星期五</option>
+                        </select>
                     </label>
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="cursor: pointer" id="next"></span>
+                    <label>
+                        <select id="worktime" name="worktime" disabled>
+                            <option value="===请选择===">===请选择===</option>
+                            <option value="1" id="worktime1">1(8:00-9:40)</option>
+                            <option value="2" id="worktime2">2(10:00-11:40)</option>
+                            <option value="3" id="worktime3">3(13:00-14:40)</option>
+                            <option value="4" id="worktime4">4(15:00-16:40)</option>
+                        </select>
+                    </label>
+                    <label>
+                        <select id="courseaddress" name="courseaddress" disabled>
+                            <option value="===请选择===">===请选择===</option>
+                            <c:forEach items="${classroom}" var="classroom">
+                                <option value="${classroom.courseaddress}">${classroom.courseaddress}</option>
+                            </c:forEach>
+                        </select>
+                    </label>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" id="savebut" disabled>保存</button>
                 </div>
-                <br/>
-            </form>
-            <div class="mb-3">
-                <label>
-                    <select id="weekday" name="weekday">
-                        <option value="===请选择===">===请选择===</option>
-                        <option value="Monday">星期一</option>
-                        <option value="Tuesday">星期二</option>
-                        <option value="Wednesday">星期三</option>
-                        <option value="Thursday">星期四</option>
-                        <option value="Friday">星期五</option>
-                    </select>
-                </label>
-                <label>
-                    <select id="worktime" name="worktime" disabled>
-                        <option value="===请选择===">===请选择===</option>
-                        <option value="First">1(8:00-9:40)</option>
-                        <option value="Second">2(10:00-11:40)</option>
-                        <option value="Third">3(13:00-14:40)</option>
-                        <option value="Fourth">4(15:00-16:40)</option>
-                    </select>
-                </label>
-                <label>
-                    <select id="courseaddress" name="worktime" disabled>
-                        <option value="===请选择===">===请选择===</option>
-                        <c:forEach items="${classroom}" var="classroom">
-                            <option value="${classroom.courseaddress}">${classroom.courseaddress}</option>
-                        </c:forEach>
-                    </select>
-                </label>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 </body>
@@ -78,10 +79,6 @@
             alert(msg);
         }
     }
-    function arfirst() {
-        var form = document.getElementById("uf");
-        form.submit();
-    }
     $("#next").click(function () {
         $.ajax({
             data:{"courseno":$("#courseno").val()},
@@ -91,20 +88,86 @@
                 if (msg === "Arranged"){
                     alert("课程已安排");
                 }
-                if (msg === "Not exist"){
+                else if (msg === "Not exist"){
                     alert("课程号不存在");
                 }
-                if (msg === "Second"){
-
+                else {
+                    var length = msg.length;
+                    for (var i = 0; i < length; i = i + 2){
+                        if (msg[i] === '1'){
+                            $("#weekday1").attr('disabled', '');
+                        }
+                        if (msg[i] === '2'){
+                            $("#weekday2").attr('disabled', '');
+                        }
+                        if (msg[i] === '3'){
+                            $("#weekday3").attr('disabled', '');
+                        }
+                        if (msg[i] === '4'){
+                            $("#weekday4").attr('disabled', '');
+                        }
+                        if (msg[i] === '5'){
+                            $("#weekday5").attr('disabled', '');
+                        }
+                    }
+                    $("#optionid").css('display', 'block');
                 }
             },
             error:function(){
-                alert("失败！");
+                alert("排课失败！");
             }
         });
     });
     $("#weekday").change(function () {
         var weekday = $("#weekday").val();
+        if (weekday !== '===请选择==='){
+            $('#worktime').removeAttr('disabled', '');
+            $.ajax({
+                data:{"weekday": weekday},
+                type: "POST",
+                url: "arrangeCourseAJAX2",
+                success:function (msg) {
+                    var length = msg.length;
+                    for (var i = 0; i < length; i = i + 2){
+                        if (msg[i] === '1'){
+                            $("#worktime1").attr('disabled', '');
+                        }
+                        if (msg[i] === '2'){
+                            $("#worktime2").attr('disabled', '');
+                        }
+                        if (msg[i] === '3'){
+                            $("#worktime3").attr('disabled', '');
+                        }
+                        if (msg[i] === '4'){
+                            $("#worktime4").attr('disabled', '');
+                        }
+                    }
+                },
+                error:function(){
+                    alert("排课失败！");
+                }
+            });
+        }
+        else {
+            $('#worktime').attr('disabled', '');
+            $('#savebut').attr('disabled', '');
+        }
+        if (weekday === 'Fri'){
+            $('#worktime4').attr('disabled', '');
+        }
+        else {
+            $('#worktime4').removeAttr('disabled', '');
+        }
+    });
+    $("#worktime").change(function () {
+        var worktime = $("#worktime").val();
+        if (worktime !== '===请选择==='){
+            $("#courseaddress").removeAttr('disabled','');
+        }
+        else {
+            $("#courseaddress").attr('disabled','');
+            $('#savebut').attr('disabled', '');
+        }
     });
 </script>
 </html>
