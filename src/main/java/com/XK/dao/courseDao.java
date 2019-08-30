@@ -36,4 +36,8 @@ public interface courseDao {
     @Update("update course set weekday = #{weekday}, worktime = #{worktime}, courseaddress = #{courseaddress} where courseno = #{courseno}")
     public void updateCourseAddress(courseModel courseModel);
 
+    //查看教师课表
+    @Select("select coursename, weekday, worktime, courseaddress from course where cno = #{cno}")
+    public List<courseModel> getTeacherCourseInfo(courseModel courseModel);
+
 }

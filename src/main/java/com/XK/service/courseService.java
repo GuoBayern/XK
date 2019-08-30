@@ -71,4 +71,11 @@ public class courseService {
         courseDao.updateCourseAddress(courseModel);
     }
 
+    //查看教师课表
+    public List<courseModel> getTeacherCourseInfo(String cno){
+        courseModel courseModel = new courseModel();
+        courseModel.setCno(cno);
+        return courseDao.getTeacherCourseInfo(courseModel);
+    }
+
 }
