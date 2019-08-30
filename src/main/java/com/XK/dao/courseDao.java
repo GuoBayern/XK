@@ -1,10 +1,7 @@
 package com.XK.dao;
 
 import com.XK.model.courseModel;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -34,5 +31,9 @@ public interface courseDao {
     //查询课程上课信息
     @Select("select weekday, worktime, courseaddress from course where courseno = #{courseno}")
     public List<courseModel> getCourseInfo(courseModel courseModel);
+
+    //更新课程教室
+    @Update("update course set weekday = #{weekday}, worktime = #{worktime}, courseaddress = #{courseaddress} where courseno = #{courseno}")
+    public void updateCourseAddress(courseModel courseModel);
 
 }

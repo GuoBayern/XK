@@ -61,4 +61,14 @@ public class courseService {
         return courseDao.getCourseInfo(courseModel);
     }
 
+    //更新课程教室
+    public void updateCourseAddress(String courseno, String weekday, String worktime, String courseaddress){
+        courseModel courseModel = new courseModel();
+        courseModel.setCourseno(courseno);
+        courseModel.setWeekday(weekday);
+        courseModel.setWorktime(worktime);
+        courseModel.setCourseaddress(courseaddress);
+        courseDao.updateCourseAddress(courseModel);
+    }
+
 }

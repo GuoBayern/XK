@@ -4,6 +4,7 @@ import com.XK.model.classroomModel;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -57,5 +58,85 @@ public interface classroomDao {
     public String getFri2();
     @Select("select count(Fri3) from classroom where Fri3 = 'no'")
     public String getFri3();
+
+    /*查询时间段有空闲的教室*/
+    @Select("select courseaddress from classroom where Mon1 != 'no'")
+    public List<classroomModel> getRestClassroomMon1();
+    @Select("select courseaddress from classroom where Mon2 != 'no'")
+    public List<classroomModel> getRestClassroomMon2();
+    @Select("select courseaddress from classroom where Mon3 != 'no'")
+    public List<classroomModel> getRestClassroomMon3();
+    @Select("select courseaddress from classroom where Mon4 != 'no'")
+    public List<classroomModel> getRestClassroomMon4();
+    @Select("select courseaddress from classroom where Tue1 != 'no'")
+    public List<classroomModel> getRestClassroomTue1();
+    @Select("select courseaddress from classroom where Tue2 != 'no'")
+    public List<classroomModel> getRestClassroomTue2();
+    @Select("select courseaddress from classroom where Tue3 != 'no'")
+    public List<classroomModel> getRestClassroomTue3();
+    @Select("select courseaddress from classroom where Tue4 != 'no'")
+    public List<classroomModel> getRestClassroomTue4();
+    @Select("select courseaddress from classroom where Wed1 != 'no'")
+    public List<classroomModel> getRestClassroomWed1();
+    @Select("select courseaddress from classroom where Wed2 != 'no'")
+    public List<classroomModel> getRestClassroomWed2();
+    @Select("select courseaddress from classroom where Wed3 != 'no'")
+    public List<classroomModel> getRestClassroomWed3();
+    @Select("select courseaddress from classroom where Wed4 != 'no'")
+    public List<classroomModel> getRestClassroomWed4();
+    @Select("select courseaddress from classroom where Thu1 != 'no'")
+    public List<classroomModel> getRestClassroomThu1();
+    @Select("select courseaddress from classroom where Thu2 != 'no'")
+    public List<classroomModel> getRestClassroomThu2();
+    @Select("select courseaddress from classroom where Thu3 != 'no'")
+    public List<classroomModel> getRestClassroomThu3();
+    @Select("select courseaddress from classroom where Thu4 != 'no'")
+    public List<classroomModel> getRestClassroomThu4();
+    @Select("select courseaddress from classroom where Fri1 != 'no'")
+    public List<classroomModel> getRestClassroomFri1();
+    @Select("select courseaddress from classroom where Fri2 != 'no'")
+    public List<classroomModel> getRestClassroomFri2();
+    @Select("select courseaddress from classroom where Fri3 != 'no'")
+    public List<classroomModel> getRestClassroomFri3();
+
+    /*更新教室*/
+    @Update("update classroom set Mon1 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomMon1(classroomModel classroomModel);
+    @Update("update classroom set Mon2 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomMon2(classroomModel classroomModel);
+    @Update("update classroom set Mon3 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomMon3(classroomModel classroomModel);
+    @Update("update classroom set Mon4 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomMon4(classroomModel classroomModel);
+    @Update("update classroom set Tue1 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomTue1(classroomModel classroomModel);
+    @Update("update classroom set Tue2 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomTue2(classroomModel classroomModel);
+    @Update("update classroom set Tue3 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomTue3(classroomModel classroomModel);
+    @Update("update classroom set Tue4 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomTue4(classroomModel classroomModel);
+    @Update("update classroom set Wed1 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomWed1(classroomModel classroomModel);
+    @Update("update classroom set Wed2 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomWed2(classroomModel classroomModel);
+    @Update("update classroom set Wed3 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomWed3(classroomModel classroomModel);
+    @Update("update classroom set Wed4 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomWed4(classroomModel classroomModel);
+    @Update("update classroom set Thu1 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomThu1(classroomModel classroomModel);
+    @Update("update classroom set Thu2 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomThu2(classroomModel classroomModel);
+    @Update("update classroom set Thu3 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomThu3(classroomModel classroomModel);
+    @Update("update classroom set Thu4 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomThu4(classroomModel classroomModel);
+    @Update("update classroom set Fri1 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomFri1(classroomModel classroomModel);
+    @Update("update classroom set Fri2 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomFri2(classroomModel classroomModel);
+    @Update("update classroom set Fri3 = '有课' where courseaddress = #{courseaddress}")
+    public void updateClassroomFri3(classroomModel classroomModel);
 
 }

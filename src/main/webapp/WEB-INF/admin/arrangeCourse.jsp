@@ -20,7 +20,7 @@
 <body class="bg-light" onload="close()">
 <div class="container">
     <div class="row">
-        <form name="uf" accept-charset="utf-8" id="uf" method="get" action="adminArrangeCourseFirst" class="needs-validation" novalidate>
+        <form name="uf" accept-charset="utf-8" id="uf" method="get" action="adminArrangeCourseSave" class="needs-validation" novalidate>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3"></h4>
                     <div class="mb-3">
@@ -55,7 +55,7 @@
                         <select id="courseaddress" name="courseaddress" disabled>
                             <option value="===请选择===">===请选择===</option>
                             <c:forEach items="${classroom}" var="classroom">
-                                <option value="${classroom.courseaddress}">${classroom.courseaddress}</option>
+                                <option value="${classroom.courseaddress}" id="${classroom.courseaddress}">${classroom.courseaddress}</option>
                             </c:forEach>
                         </select>
                     </label>
@@ -69,13 +69,10 @@
 <script type="application/javascript">
     function close() {
         var msg = '<%=request.getAttribute("message")%>';
-        if (msg === "课程号不存在"){
+        if (msg === "排课成功"){
             alert(msg);
         }
-        if (msg === "课程已安排"){
-            alert(msg);
-        }
-        if (msg === "第二步"){
+        if (msg === "排课失败"){
             alert(msg);
         }
     }
@@ -160,14 +157,36 @@
         }
     });
     $("#worktime").change(function () {
+        var weekday = $("#weekday").val();
         var worktime = $("#worktime").val();
         if (worktime !== '===请选择==='){
             $("#courseaddress").removeAttr('disabled','');
+            $.ajax({
+                data:{"weekdayworktime": weekday + worktime},
+                type: "POST",
+                url: "arrangeCourseAJAX3",
+                success:function (msg) {
+                    var length = msg.length;
+                    for (var i = 0; i < length; i = i + 4){
+                        var msgsub = msg.substring(i, i + 4);
+                        $("#" + msgsub).attr('disabled', '');
+                    }
+                },
+                error:function(){
+                    alert("排课失败！");
+                }
+            });
         }
         else {
             $("#courseaddress").attr('disabled','');
             $('#savebut').attr('disabled', '');
         }
     });
+    $("#courseaddress").change(function () {
+        var courseaddress = $("#courseaddress").val();
+        if (courseaddress !== '===请选择==='){
+            $('#savebut').removeAttr('disabled', '');
+        }
+    })
 </script>
 </html>
