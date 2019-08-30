@@ -62,7 +62,7 @@
         document.getElementById("frame4").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
-        document.getElementById("iFrameId").src = "";
+        document.getElementById("iFrameId").src = "studentEnterCourse";
     }
     function changeiFrame2() {
         document.getElementById("frame2").classList.add("active");
@@ -71,7 +71,7 @@
         document.getElementById("frame4").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
-        document.getElementById("iFrameId").src = "";
+        document.getElementById("iFrameId").src = "studentQuitCourse";
     }
     function changeiFrame3() {
         document.getElementById("frame3").classList.add("active");
@@ -80,7 +80,7 @@
         document.getElementById("frame4").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
-        document.getElementById("iFrameId").src = "";
+        document.getElementById("iFrameId").src = "studentMyCourse";
     }
     function changeiFrame4() {
         document.getElementById("frame4").classList.add("active");
@@ -89,7 +89,7 @@
         document.getElementById("frame1").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
-        document.getElementById("iFrameId").src = "";
+        document.getElementById("iFrameId").src = "studentMyScore";
     }
     function changeiFrame5() {
         document.getElementById("frame5").classList.add("active");
@@ -98,7 +98,7 @@
         document.getElementById("frame4").classList.remove("active");
         document.getElementById("frame1").classList.remove("active");
         document.getElementById("frame6").classList.remove("active");
-        document.getElementById("iFrameId").src = "";
+        document.getElementById("iFrameId").src = "studentMyCredit";
     }
     function changeiFrame6() {
         document.getElementById("frame6").classList.add("active");

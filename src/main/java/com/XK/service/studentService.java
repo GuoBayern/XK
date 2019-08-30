@@ -1,6 +1,7 @@
 package com.XK.service;
 
 import com.XK.dao.studentDao;
+import com.XK.model.courseModel;
 import com.XK.model.studentModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,6 +78,13 @@ public class studentService {
         studentModel.setSpass(spass);
         studentModel.setTel(tel);
         studentDao.updateStudentInfoPass(studentModel);
+    }
+
+    //根据成绩学号查询学生姓名
+    public List<studentModel> getStudentNameFromScore(String cno){
+        courseModel courseModel = new courseModel();
+        courseModel.setCno(cno);
+        return studentDao.getStudentNameFromScore(courseModel);
     }
 
 }

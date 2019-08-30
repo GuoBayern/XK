@@ -84,7 +84,7 @@
         document.getElementById("frame3").classList.remove("active");
         document.getElementById("frame1").classList.remove("active");
         document.getElementById("frame5").classList.remove("active");
-        document.getElementById("iFrameId").src = "";
+        document.getElementById("iFrameId").src = "teacherEnterScore";
     }
     function changeiFrame5() {
         document.getElementById("frame5").classList.add("active");

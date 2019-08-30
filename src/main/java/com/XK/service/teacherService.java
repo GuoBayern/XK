@@ -1,6 +1,7 @@
 package com.XK.service;
 
 import com.XK.dao.teacherDao;
+import com.XK.model.courseModel;
 import com.XK.model.teacherModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,6 +80,20 @@ public class teacherService {
         teacherModel.setCpass(cpass);
         teacherModel.setTel(tel);
         teacherDao.updateTeacherInfoPass(teacherModel);
+    }
+
+    //根据课程号查询教师姓名
+    public List<teacherModel> getTeacherNameFromCourse(String courseno){
+        courseModel courseModel = new courseModel();
+        courseModel.setCourseno(courseno);
+        return teacherDao.getTeacherNameFromCourse(courseModel);
+    }
+
+    //根据课程名查询教师姓名
+    public List<teacherModel> getTeacherNameFromCourseName(String coursename){
+        courseModel courseModel = new courseModel();
+        courseModel.setCoursename(coursename);
+        return teacherDao.getTeacherNameFromCourseName(courseModel);
     }
 
 }

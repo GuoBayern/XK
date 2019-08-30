@@ -1,5 +1,6 @@
 package com.XK.dao;
 
+import com.XK.model.courseModel;
 import com.XK.model.teacherModel;
 import org.apache.ibatis.annotations.*;
 
@@ -39,5 +40,13 @@ public interface teacherDao {
     //更新教师信息密码
     @Update("update teacher set cpass = #{cpass}, tel = #{tel} where cno = #{cno}")
     public void updateTeacherInfoPass(teacherModel teacherModel);
+
+    //根据课程号查询教师姓名
+    @Select("select teacher.cname from teacher, course where teacher.cno = course.cno and course.courseno like #{courseno}")
+    public List<teacherModel> getTeacherNameFromCourse(courseModel courseModel);
+
+    //根据课程名查询教师姓名
+    @Select("select teacher.cname from teacher, course where teacher.cno = course.cno and course.coursename like #{coursename}")
+    public List<teacherModel> getTeacherNameFromCourseName(courseModel courseModel);
 
 }

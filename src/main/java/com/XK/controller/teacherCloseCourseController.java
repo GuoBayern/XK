@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class teacherCloseCourseController {
 
-    private com.XK.service.courseService courseService;
+    private courseService courseService;
     @Autowired
     public void setCourseService(courseService courseService){
         this.courseService = courseService;
@@ -34,7 +34,7 @@ public class teacherCloseCourseController {
         String courseno = request.getParameter("no");
         String coursename = request.getParameter("name");
         String cnoget = courseService.getCourseCno(courseno);
-        String cousenameget = courseService.getCourseCoursename(courseno);
+        String coursenameget = courseService.getCourseCoursename(courseno);
         if (cnoget == null){
             request.getSession().setAttribute("message", "课程号不存在");
         }
@@ -43,7 +43,7 @@ public class teacherCloseCourseController {
                 request.getSession().setAttribute("message", "课程号输入错误");
             }
             else {
-                if (!coursename.equals(cousenameget)){
+                if (!coursename.equals(coursenameget)){
                     request.getSession().setAttribute("message", "课程名输入错误");
                 }
                 else {

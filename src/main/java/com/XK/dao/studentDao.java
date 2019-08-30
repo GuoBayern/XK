@@ -1,5 +1,6 @@
 package com.XK.dao;
 
+import com.XK.model.courseModel;
 import com.XK.model.studentModel;
 import org.apache.ibatis.annotations.*;
 
@@ -39,5 +40,9 @@ public interface studentDao {
     //更新学生信息密码
     @Update("update student set spass = #{spass}, tel = #{tel} where sno = #{sno}")
     public void updateStudentInfoPass(studentModel studentModel);
+
+    //根据成绩学号查询学生姓名
+    @Select("select sname from student, score, course where student.sno = score.sno and score.courseno = course.courseno and course.cno = #{cno}")
+    public List<studentModel> getStudentNameFromScore(courseModel courseModel);
 
 }

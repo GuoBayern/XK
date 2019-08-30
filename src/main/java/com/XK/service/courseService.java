@@ -2,6 +2,7 @@ package com.XK.service;
 
 import com.XK.dao.courseDao;
 import com.XK.model.courseModel;
+import com.XK.model.scoreModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,6 +77,48 @@ public class courseService {
         courseModel courseModel = new courseModel();
         courseModel.setCno(cno);
         return courseDao.getTeacherCourseInfo(courseModel);
+    }
+
+    //根据课程号模糊查询
+    public List<courseModel> getAllCourseInfo(String courseno){
+        courseModel courseModel = new courseModel();
+        courseModel.setCourseno(courseno);
+        return courseDao.getAllCourseInfo(courseModel);
+    }
+
+    //根据课程名模糊查询
+    public List<courseModel> getAllCourse(String coursename){
+        courseModel courseModel = new courseModel();
+        courseModel.setCoursename(coursename);
+        return courseDao.getAllCourse(courseModel);
+    }
+
+    //查看学生课表
+    public List<courseModel> getStudentCourse(String sno){
+        scoreModel scoreModel = new scoreModel();
+        scoreModel.setSno(sno);
+        return courseDao.getStudentCourse(scoreModel);
+    }
+
+    //根据成绩课程号获取课程名
+    public List<courseModel> getStudentScoreCourseName(String sno){
+        scoreModel scoreModel = new scoreModel();
+        scoreModel.setSno(sno);
+        return courseDao.getStudentScoreCourseName(scoreModel);
+    }
+
+    //根据成绩课程号获取学分
+    public List<courseModel> getStudentCreditCourseName(String sno){
+        scoreModel scoreModel = new scoreModel();
+        scoreModel.setSno(sno);
+        return courseDao.getStudentCreditCourseName(scoreModel);
+    }
+
+    //根据成绩课程号教师号获取课程名
+    public List<courseModel> getTeacherScoreCourseName(String cno){
+        courseModel courseModel = new courseModel();
+        courseModel.setCno(cno);
+        return courseDao.getTeacherScoreCourseName(courseModel);
     }
 
 }
